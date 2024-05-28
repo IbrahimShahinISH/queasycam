@@ -1,3 +1,4 @@
+
 /*
  * NOTE: This doesn't generate real mazes; they're just
  * empty spaces in which to walk around. Enjoy! :)
