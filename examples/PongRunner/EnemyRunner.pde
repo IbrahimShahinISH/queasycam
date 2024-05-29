@@ -3,8 +3,8 @@ class Player extends QueasyCam {
   PVector velocity;
   PVector gravity;
   boolean grounded;
-  
-  Player(PApplet applet){
+
+  Player(PApplet applet) {
     super(applet);
     speed = 0.04;
     dimensions = new PVector(1, 3, 1);
@@ -12,15 +12,21 @@ class Player extends QueasyCam {
     gravity = new PVector(0, 0.01, 0);
     grounded = false;
   }
-  
-  void update(){
+
+  void update() {
     velocity.add(gravity);
     position.add(velocity);
-    
-    if (grounded && keyPressed && key == ' '){
+
+    if (grounded && keyPressed && key == ' ') {
       grounded = false;
       velocity.y = -0.5;
       position.y -= 0.1;
+    }
+    // Collision check
+    for (int i=0; i<maze.blocks.length; i++) {
+      for (int j=0; j<maze.blocks[i].length; j++) {
+        maze.blocks[i][j].checkCollision(this);
+      }
     }
   }
 }
